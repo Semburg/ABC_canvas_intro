@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+
+<body style="margin: 0;">
+
+
+    <canvas id="canvas" style="display: block;">Thats a canvas</canvas>
+
+
+    <script>
+        canvas = document.getElementById('canvas')
+        ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+
+
+        // figures
+        var x = 50
+        ctx.fillStyle = 'gold'
+        ctx.fillRect(x, 50, 120, 120)
+
+        // test  easy animation
+        // setInterval(function () {
+        //     ctx.fillStyle = 'white'
+        //     ctx.fillRect(0, 0, canvas.width, canvas.height)
+        //     ctx.fillStyle = 'gold'
+        //     ctx.fillRect(x++, 50, 120, 120)
+        // }, 10)
+
+        // border
+        var x2 = 173
+        ctx.fillStyle = 'red'
+        // for stroke fillStyle not working
+        ctx.strokeStyle = 'red'
+        ctx.lineWidth = 6
+        ctx.strokeRect(x2, 53, 114, 114)
+
+        // circle
+        ctx.fillStyle = 'magenta'
+        //full round - math.pi *2
+        // true at the end - direction of 'drawing' false is clockwise
+        ctx.arc(canvas.width / 2, canvas.height / 2, 30, 0, Math.PI, true)
+        ctx.fill()
+
+            
+        //triangle and other biests
+
+        ctx.strokeStyle = 'steelblue'
+        ctx.lineWidth = 2
+
+        //scaling
+
+        // ctx.scale(2,2) ...   rotate is working as well in canvas
+
+        ctx.beginPath()
+        // lines from
+        ctx.moveTo(50, 250)
+        // drawing every line
+        ctx.lineTo(25, 270)
+        ctx.lineTo(75, 270)
+        ctx.closePath() // or ctx.lineTo(50, 250) - just connection to start point
+
+        ctx.stroke()
+
+        // text with canvas colors and positions
+        
+
+        var grad = ctx.createLinearGradient(0,0,300,0)
+        grad.addColorStop('0', 'green')
+        grad.addColorStop('.50', 'blue' )
+        grad.addColorStop('1', 'red' )
+
+        ctx.fillStyle = grad
+
+        ctx.font = '20px Georgia'
+        ctx.fillText('hello canvas', 30, 25)
+
+        
+
+
+        ctx.textAlign = 'center'
+        ctx.fillText('centered text on X', canvas.width/2, 25)
+
+
+
+
+    </script>
+
+</body>
+
+</html>
